@@ -1,0 +1,32 @@
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+
+export function useMagneticEffect<T extends HTMLElement>(strength = 0.4) {
+  const ref = useRef<T>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(el, { x: x * strength, y: y * strength, duration: 0.3, ease: 'power2.out' });
+    };
+
+    const onMouseLeave = () => {
+      gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+    };
+
+    el.addEventListener('mousemove', onMouseMove);
+    el.addEventListener('mouseleave', onMouseLeave);
+
+    return () => {
+      el.removeEventListener('mousemove', onMouseMove);
+      el.removeEventListener('mouseleave', onMouseLeave);
+    };
+  }, [strength]);
+
+  return ref;
+}
