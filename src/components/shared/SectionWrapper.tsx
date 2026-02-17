@@ -32,7 +32,7 @@ export default function SectionWrapper({ id, children, className = '' }: Section
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       variants={prefersReduced ? reducedVariants : variants}
-      className={`py-20 px-6 md:px-12 lg:px-20 ${className}`}
+      className={`py-28 px-6 md:px-12 lg:px-20 ${className}`}
     >
       {children}
     </motion.section>

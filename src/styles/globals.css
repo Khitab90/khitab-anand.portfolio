@@ -38,8 +38,14 @@ body {
   cursor: none;
 }
 
+/* Force all children to inherit cursor:none so custom cursor shows everywhere */
+body * {
+  cursor: none;
+}
+
 @media (pointer: coarse) {
-  body {
+  body,
+  body * {
     cursor: auto;
   }
 }
