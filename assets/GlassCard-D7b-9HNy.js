@@ -1,0 +1,1 @@
+import{j as o}from"./framer-motion-Dw5YJD9x.js";function e({children:r,className:s="",hover:a=!0}){return o.jsx("div",{className:`glass transition-all duration-300 ${a?"hover:border-purple-500/30 hover:shadow-[0_0_24px_rgba(124,58,237,0.15)]":""} ${s}`,children:r})}export{e as G};
