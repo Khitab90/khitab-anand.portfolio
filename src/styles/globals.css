@@ -34,46 +34,7 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* NOTE: overflow-x is set on #root, NOT body, so fixed cursor divs aren't clipped */
-  cursor: none !important;
-}
-
-/* Contain horizontal overflow on the app wrapper, not body, to avoid clipping fixed elements */
-#root {
   overflow-x: hidden;
-}
-
-/* Force cursor:none on ALL elements including interactive ones (browsers reset cursor on a/button) */
-*,
-*::before,
-*::after,
-a,
-button,
-input,
-textarea,
-select,
-label,
-[role="button"],
-[tabindex],
-[data-cursor] {
-  cursor: none !important;
-}
-
-@media (pointer: coarse) {
-  *,
-  *::before,
-  *::after,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  label,
-  [role="button"],
-  [tabindex],
-  [data-cursor] {
-    cursor: auto !important;
-  }
 }
 
 /* Skip link */

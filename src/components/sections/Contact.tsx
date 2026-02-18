@@ -21,7 +21,7 @@ export default function Contact() {
     <SectionWrapper id="contact">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="mb-20 text-center">
+        <div className="mb-12 text-center">
           <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Get In Touch</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             Let's <GradientText>Connect</GradientText>

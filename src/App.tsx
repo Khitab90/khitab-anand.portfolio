@@ -2,7 +2,6 @@ import { Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
-import CustomCursor from './components/shared/CustomCursor';
 import { useLenis } from './hooks/useLenis';
 
 // Lazy-load below-the-fold sections
@@ -21,7 +20,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <main id="main">
         <Hero />

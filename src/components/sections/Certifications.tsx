@@ -10,7 +10,7 @@ export default function Certifications() {
     <SectionWrapper id="certifications" className="bg-white/[0.01]">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-20 text-center">
+        <div className="mb-12 text-center">
           <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Credentials</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             <GradientText>Certifications</GradientText>
