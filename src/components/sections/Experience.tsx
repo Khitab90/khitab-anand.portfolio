@@ -10,15 +10,15 @@ export default function Experience() {
     <SectionWrapper id="experience" className="bg-white/[0.01]">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-3">Career</p>
+        <div className="mb-20 text-center">
+          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Career</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             Work <GradientText>Experience</GradientText>
           </h2>
         </div>
 
         {/* Timeline — clean left-aligned, no split */}
-        <div className="relative pl-8">
+        <div className="relative pl-10">
           {/* Vertical line */}
           <div
             className="absolute left-0 top-2 bottom-2 w-px"
@@ -28,7 +28,7 @@ export default function Experience() {
             }}
           />
 
-          <div className="space-y-10">
+          <div className="space-y-12">
             {experience.map((item, i) => (
               <motion.article
                 key={item.id}
@@ -40,30 +40,30 @@ export default function Experience() {
               >
                 {/* Timeline node */}
                 <div
-                  className="absolute -left-[2.15rem] top-7 w-3.5 h-3.5 rounded-full border-2 border-violet-500 bg-[#0a0a0f] shadow-[0_0_10px_rgba(124,58,237,0.6)]"
+                  className="absolute -left-[2.75rem] top-8 w-4 h-4 rounded-full border-2 border-violet-500 bg-[#0a0a0f] shadow-[0_0_12px_rgba(124,58,237,0.7)]"
                   aria-hidden="true"
                 />
 
-                <GlassCard className="p-7">
+                <GlassCard className="p-8 md:p-10">
                   {/* Company + role */}
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0 mt-0.5">
-                      <Briefcase size={18} className="text-violet-400" aria-hidden="true" />
+                  <div className="flex items-start gap-5 mb-7">
+                    <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0 mt-0.5">
+                      <Briefcase size={20} className="text-violet-400" aria-hidden="true" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-white text-lg leading-snug">{item.role}</h3>
-                      <p className="text-violet-300 text-sm font-medium mt-0.5">{item.company}</p>
-                      <p className="text-gray-500 text-xs mt-1">
+                    <div className="space-y-1">
+                      <h3 className="font-semibold text-white text-xl leading-snug">{item.role}</h3>
+                      <p className="text-violet-300 text-sm font-medium">{item.company}</p>
+                      <p className="text-gray-500 text-sm">
                         {item.startDate} – {item.endDate} · {item.location}
                       </p>
                     </div>
                   </div>
 
                   {/* Bullets */}
-                  <ul className="space-y-3" aria-label={`Responsibilities at ${item.company}`}>
+                  <ul className="space-y-4" aria-label={`Responsibilities at ${item.company}`}>
                     {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-3 text-sm text-gray-400 leading-relaxed">
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true" />
+                      <li key={bullet} className="flex items-start gap-4 text-sm text-gray-400 leading-loose">
+                        <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true" />
                         {bullet}
                       </li>
                     ))}

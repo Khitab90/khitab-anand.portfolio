@@ -14,14 +14,14 @@ export default function About() {
     <SectionWrapper id="about">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
-        <div className="mb-14 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-3">About Me</p>
+        <div className="mb-20 text-center">
+          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">About Me</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             Who I <GradientText>Am</GradientText>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -29,7 +29,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="space-y-4 text-gray-400 leading-relaxed text-base">
+            <div className="space-y-6 text-gray-400 leading-loose text-base">
               <p>
                 I'm a <span className="text-gray-200 font-medium">Software Engineer</span> based
                 in Los Angeles, CA, with over two years of professional experience building
@@ -50,7 +50,7 @@ export default function About() {
             </div>
 
             {/* Education callouts */}
-            <div className="mt-8 space-y-3">
+            <div className="mt-10 space-y-4">
               {[
                 { degree: 'MBA', school: 'Westcliff University', period: '2024 – Present' },
                 { degree: 'M.S. Computer Science', school: 'California State University, Northridge', period: '2018 – 2021' },
@@ -58,12 +58,12 @@ export default function About() {
               ].map((ed) => (
                 <div
                   key={ed.degree}
-                  className="flex items-start gap-3 p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:border-violet-500/20 transition-colors"
+                  className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 transition-colors"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5 shrink-0" aria-hidden="true" />
-                  <div>
-                    <p className="text-sm font-medium text-gray-200">{ed.degree}</p>
-                    <p className="text-xs text-gray-500">{ed.school} · {ed.period}</p>
+                  <div className="w-2 h-2 rounded-full bg-violet-500 mt-1.5 shrink-0" aria-hidden="true" />
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-gray-200">{ed.degree}</p>
+                    <p className="text-xs text-gray-500 leading-relaxed">{ed.school} · {ed.period}</p>
                   </div>
                 </div>
               ))}
@@ -71,10 +71,10 @@ export default function About() {
           </motion.div>
 
           {/* Skills */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {skills.map((cat, ci) => (
               <div key={cat.category}>
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">
                   {cat.category}
                 </h3>
                 <motion.div
@@ -82,7 +82,7 @@ export default function About() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex flex-wrap gap-2"
+                  className="flex flex-wrap gap-2.5"
                 >
                   {cat.skills.map((skill, si) => (
                     <SkillPill key={skill} label={skill} index={ci * 8 + si} />

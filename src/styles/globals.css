@@ -34,19 +34,45 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  cursor: none;
+  /* NOTE: overflow-x is set on #root, NOT body, so fixed cursor divs aren't clipped */
+  cursor: none !important;
 }
 
-/* Force all children to inherit cursor:none so custom cursor shows everywhere */
-body * {
-  cursor: none;
+/* Contain horizontal overflow on the app wrapper, not body, to avoid clipping fixed elements */
+#root {
+  overflow-x: hidden;
+}
+
+/* Force cursor:none on ALL elements including interactive ones (browsers reset cursor on a/button) */
+*,
+*::before,
+*::after,
+a,
+button,
+input,
+textarea,
+select,
+label,
+[role="button"],
+[tabindex],
+[data-cursor] {
+  cursor: none !important;
 }
 
 @media (pointer: coarse) {
-  body,
-  body * {
-    cursor: auto;
+  *,
+  *::before,
+  *::after,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  [role="button"],
+  [tabindex],
+  [data-cursor] {
+    cursor: auto !important;
   }
 }
 

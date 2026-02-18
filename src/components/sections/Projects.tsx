@@ -70,12 +70,12 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div ref={cardRef} style={{ transformStyle: 'preserve-3d' }} data-cursor="link">
-        <GlassCard className="p-6 h-full flex flex-col" hover={false}>
+        <GlassCard className="p-7 md:p-8 h-full flex flex-col" hover={false}>
           {/* Header */}
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div>
-              <span className="text-xs text-gray-500 mb-1 block">{project.date} · {project.role}</span>
-              <h3 className="font-semibold text-white text-base leading-snug">{project.title}</h3>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="space-y-1">
+              <span className="text-xs text-gray-500 block">{project.date} · {project.role}</span>
+              <h3 className="font-semibold text-white text-lg leading-snug">{project.title}</h3>
             </div>
             <a
               href={project.githubUrl}
@@ -85,19 +85,19 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               className="text-gray-500 hover:text-violet-400 transition-colors shrink-0 mt-1"
               onClick={(e) => e.stopPropagation()}
             >
-              <FaGithub size={18} aria-hidden="true" />
+              <FaGithub size={20} aria-hidden="true" />
             </a>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-gray-400 leading-relaxed flex-1 mb-4">{project.description}</p>
+          <p className="text-sm text-gray-400 leading-loose flex-1 mb-6">{project.description}</p>
 
           {/* Tech tags */}
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className={`text-xs px-2.5 py-1 rounded-full border font-medium ${getTechClass(tech)}`}
+                className={`text-xs px-3 py-1.5 rounded-full border font-medium ${getTechClass(tech)}`}
               >
                 {tech}
               </span>
@@ -111,7 +111,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View live demo of ${project.title}`}
-              className="mt-4 inline-flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 transition-colors"
+              className="mt-5 inline-flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors"
             >
               Live Demo <ExternalLink size={12} aria-hidden="true" />
             </a>
@@ -127,18 +127,18 @@ export default function Projects() {
     <SectionWrapper id="projects">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-14 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-3">Portfolio</p>
+        <div className="mb-20 text-center">
+          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Portfolio</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             Featured <GradientText>Projects</GradientText>
           </h2>
-          <p className="mt-4 text-gray-500 text-sm max-w-lg mx-auto">
+          <p className="mt-5 text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
             A selection of projects spanning full-stack web apps, REST APIs, and mobile backends.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}

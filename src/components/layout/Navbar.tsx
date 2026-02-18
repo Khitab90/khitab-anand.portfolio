@@ -57,7 +57,7 @@ export default function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16"
+        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between h-20"
       >
         {/* Logo */}
         <a

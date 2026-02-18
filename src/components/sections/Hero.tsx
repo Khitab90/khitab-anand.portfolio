@@ -110,13 +110,13 @@ export default function Hero() {
           </div>
 
           {/* Subtitle */}
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-loose">
             Software Engineer with experience building dynamic web applications —
             passionate about crafting clean, performant UIs and continuous learning.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <MagneticButton href="#projects" variant="primary">
               View My Work <ArrowRight size={16} aria-hidden="true" />
             </MagneticButton>

@@ -10,15 +10,15 @@ export default function Certifications() {
     <SectionWrapper id="certifications" className="bg-white/[0.01]">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-14 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-3">Credentials</p>
+        <div className="mb-20 text-center">
+          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Credentials</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             <GradientText>Certifications</GradientText>
           </h2>
         </div>
 
         {/* Cards */}
-        <div className="space-y-5">
+        <div className="space-y-8">
           {certifications.map((cert, i) => (
             <motion.div
               key={cert.id}
@@ -27,24 +27,24 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <GlassCard className="p-6 md:p-8">
-                <div className="flex items-start gap-5">
+              <GlassCard className="p-8 md:p-10">
+                <div className="flex items-start gap-6">
                   {/* Icon */}
-                  <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0">
-                    <Award size={24} className="text-violet-400" aria-hidden="true" />
+                  <div className="p-4 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0">
+                    <Award size={28} className="text-violet-400" aria-hidden="true" />
                   </div>
 
                   <div className="flex-1 min-w-0">
                     {/* Title row */}
-                    <div className="flex flex-wrap items-start justify-between gap-3 mb-1">
-                      <h3 className="font-semibold text-white text-lg leading-snug">{cert.title}</h3>
+                    <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
+                      <h3 className="font-semibold text-white text-xl leading-snug">{cert.title}</h3>
                       {cert.credentialUrl && (
                         <a
                           href={cert.credentialUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`View credential for ${cert.title}`}
-                          className="inline-flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/60 px-3 py-1.5 rounded-full transition-all duration-200 shrink-0"
+                          className="inline-flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 border border-violet-500/30 hover:border-violet-400/60 px-4 py-2 rounded-full transition-all duration-200 shrink-0"
                           data-cursor="link"
                         >
                           View Credential <ExternalLink size={11} aria-hidden="true" />
@@ -53,19 +53,19 @@ export default function Certifications() {
                     </div>
 
                     {/* Issuer + year */}
-                    <p className="text-sm text-gray-400 mb-1">
+                    <p className="text-sm text-gray-400 mb-4">
                       <span className="text-violet-300 font-medium">{cert.issuer}</span>
                       {' · '}{cert.platform}{' · '}{cert.year}
                     </p>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-400 leading-relaxed mb-4">{cert.description}</p>
+                    <p className="text-sm text-gray-400 leading-loose mb-6">{cert.description}</p>
 
                     {/* Highlights */}
-                    <ul className="space-y-1.5" aria-label="Certificate highlights">
+                    <ul className="space-y-3" aria-label="Certificate highlights">
                       {cert.highlights.map((h) => (
-                        <li key={h} className="flex items-start gap-2 text-sm text-gray-400">
-                          <CheckCircle2 size={14} className="text-violet-400 mt-0.5 shrink-0" aria-hidden="true" />
+                        <li key={h} className="flex items-start gap-3 text-sm text-gray-400 leading-relaxed">
+                          <CheckCircle2 size={15} className="text-violet-400 mt-0.5 shrink-0" aria-hidden="true" />
                           {h}
                         </li>
                       ))}

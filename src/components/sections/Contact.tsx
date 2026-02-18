@@ -8,7 +8,7 @@ import { Mail, MapPin, Send } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const inputClass =
-  'w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-violet-500/60 focus:bg-violet-500/5 transition-all duration-200';
+  'w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-violet-500/60 focus:bg-violet-500/5 transition-all duration-200';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -21,33 +21,33 @@ export default function Contact() {
     <SectionWrapper id="contact">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="mb-14 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-3">Get In Touch</p>
+        <div className="mb-20 text-center">
+          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Get In Touch</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">
             Let's <GradientText>Connect</GradientText>
           </h2>
-          <p className="mt-4 text-gray-500 text-sm max-w-lg mx-auto">
+          <p className="mt-5 text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
             Have a project in mind, a role to discuss, or just want to say hi? I'd love to hear from you.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-10">
           {/* Form */}
-          <GlassCard className="p-6 md:p-8">
+          <GlassCard className="p-8 md:p-10">
             <form
               action="mailto:kjanand09@gmail.com"
               method="post"
               encType="text/plain"
               aria-label="Contact form"
             >
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4 }}
                 >
-                  <label htmlFor="contact-name" className="block text-xs font-medium text-gray-400 mb-1.5">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-gray-400 mb-2">
                     Name
                   </label>
                   <input
@@ -70,7 +70,7 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.08 }}
                 >
-                  <label htmlFor="contact-email" className="block text-xs font-medium text-gray-400 mb-1.5">
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-gray-400 mb-2">
                     Email
                   </label>
                   <input
@@ -93,7 +93,7 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.16 }}
                 >
-                  <label htmlFor="contact-message" className="block text-xs font-medium text-gray-400 mb-1.5">
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-gray-400 mb-2">
                     Message
                   </label>
                   <textarea
@@ -117,7 +117,7 @@ export default function Contact() {
           </GlassCard>
 
           {/* Contact info */}
-          <div className="space-y-5">
+          <div className="space-y-5 flex flex-col justify-center">
             {[
               {
                 icon: <Mail size={20} aria-hidden="true" />,
@@ -155,13 +155,13 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <GlassCard className="p-5">
-                  <div className="flex items-center gap-4">
-                    <div className="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 shrink-0">
+                <GlassCard className="p-6">
+                  <div className="flex items-center gap-5">
+                    <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-0.5">{item.label}</p>
+                      <p className="text-xs text-gray-500 mb-1">{item.label}</p>
                       {item.href ? (
                         <a
                           href={item.href}
