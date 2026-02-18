@@ -70,10 +70,10 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div ref={cardRef} style={{ transformStyle: 'preserve-3d' }} data-cursor="link">
-        <GlassCard className="p-7 md:p-8 h-full flex flex-col" hover={false}>
+        <GlassCard className="p-9 md:p-10 h-full flex flex-col" hover={false}>
           {/* Header */}
-          <div className="flex items-start justify-between gap-4 mb-4">
-            <div className="space-y-1">
+          <div className="flex items-start justify-between gap-4 mb-5">
+            <div className="space-y-2">
               <span className="text-xs text-gray-500 block">{project.date} · {project.role}</span>
               <h3 className="font-semibold text-white text-lg leading-snug">{project.title}</h3>
             </div>
@@ -125,7 +125,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
 export default function Projects() {
   return (
     <SectionWrapper id="projects">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto w-full">
         {/* Header */}
         <div className="mb-12 text-center">
           <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Portfolio</p>

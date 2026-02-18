@@ -32,7 +32,7 @@ export default function SectionWrapper({ id, children, className = '' }: Section
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
       variants={prefersReduced ? reducedVariants : variants}
-      className={`relative min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 py-24 ${className}`}
+      className={`relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 py-24 ${className}`}
     >
       {/* Top gradient divider — gives each section a distinct "new page" feel */}
       <div

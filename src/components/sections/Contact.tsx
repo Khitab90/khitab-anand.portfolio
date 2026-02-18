@@ -19,7 +19,7 @@ export default function Contact() {
 
   return (
     <SectionWrapper id="contact">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto w-full">
         {/* Header */}
         <div className="mb-12 text-center">
           <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">Get In Touch</p>

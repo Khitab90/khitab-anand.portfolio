@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import GradientText from '../shared/GradientText';
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -39,7 +38,6 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  // Trap focus in mobile menu
   useEffect(() => {
     if (!menuOpen) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -57,26 +55,15 @@ export default function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between h-20"
+        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-center h-20"
       >
-        {/* Logo */}
-        <a
-          href="#"
-          className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
-          aria-label="Khitab Anand — go to top"
-          data-cursor="link"
-        >
-          <GradientText>KA</GradientText>
-        </a>
-
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8" role="list">
+        {/* Desktop links — centered */}
+        <ul className="hidden md:flex items-center gap-10" role="list">
           {navLinks.map(({ href, label }) => (
             <li key={href}>
               <a
                 href={href}
-                data-cursor="link"
-                className={`text-sm font-medium transition-colors duration-200 relative group ${
+                className={`text-sm font-medium tracking-wide transition-colors duration-200 relative group ${
                   activeSection === href.slice(1)
                     ? 'text-violet-300'
                     : 'text-gray-400 hover:text-gray-100'
@@ -93,16 +80,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-        </button>
+        {/* Mobile hamburger — right-aligned on mobile */}
+        <div className="md:hidden flex w-full justify-end">
+          <button
+            className="p-2 text-gray-400 hover:text-white transition-colors"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -119,7 +108,7 @@ export default function Navbar() {
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="md:hidden overflow-hidden bg-[#0a0a0f]/95 backdrop-blur-lg border-b border-white/5"
           >
-            <ul className="flex flex-col px-6 py-4 gap-4" role="list">
+            <ul className="flex flex-col items-center px-6 py-6 gap-5" role="list">
               {navLinks.map(({ href, label }) => (
                 <li key={href}>
                   <a

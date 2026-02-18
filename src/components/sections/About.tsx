@@ -12,7 +12,7 @@ const containerVariants = {
 export default function About() {
   return (
     <SectionWrapper id="about">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto w-full">
         {/* Section header */}
         <div className="mb-12 text-center">
           <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">About Me</p>
