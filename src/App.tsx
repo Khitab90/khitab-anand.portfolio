@@ -8,7 +8,6 @@ import { useLenis } from './hooks/useLenis';
 const About = lazy(() => import('./components/sections/About'));
 const Experience = lazy(() => import('./components/sections/Experience'));
 const Projects = lazy(() => import('./components/sections/Projects'));
-const Certifications = lazy(() => import('./components/sections/Certifications'));
 const Contact = lazy(() => import('./components/sections/Contact'));
 
 function SectionFallback() {
@@ -31,9 +30,6 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Projects />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <Certifications />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Contact />

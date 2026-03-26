@@ -18,7 +18,7 @@ export default function Certifications() {
         </div>
 
         {/* Cards */}
-        <div className="space-y-8">
+        <div className="space-y-6">
           {certifications.map((cert, i) => (
             <motion.div
               key={cert.id}
@@ -27,17 +27,17 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <GlassCard className="p-10 md:p-12">
-                <div className="flex items-start gap-7">
+              <GlassCard className="p-8">
+                <div className="flex items-start gap-6">
                   {/* Icon */}
-                  <div className="p-4 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0">
-                    <Award size={30} className="text-violet-400" aria-hidden="true" />
+                  <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 shrink-0">
+                    <Award size={22} className="text-violet-400" aria-hidden="true" />
                   </div>
 
                   <div className="flex-1 min-w-0">
                     {/* Title row */}
-                    <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                      <h3 className="font-semibold text-white text-xl leading-snug">{cert.title}</h3>
+                    <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
+                      <h3 className="font-semibold text-white text-lg leading-snug">{cert.title}</h3>
                       {cert.credentialUrl && (
                         <a
                           href={cert.credentialUrl}
@@ -52,13 +52,16 @@ export default function Certifications() {
                     </div>
 
                     {/* Issuer + year */}
-                    <p className="text-sm text-gray-400 mb-5">
+                    <p className="text-sm text-gray-400 mb-4">
                       <span className="text-violet-300 font-medium">{cert.issuer}</span>
                       {' · '}{cert.platform}{' · '}{cert.year}
                     </p>
 
+                    {/* Divider */}
+                    <div className="h-px bg-white/[0.06] mb-5" />
+
                     {/* Description */}
-                    <p className="text-sm text-gray-400 leading-loose mb-7">{cert.description}</p>
+                    <p className="text-sm text-gray-400 leading-loose mb-5">{cert.description}</p>
 
                     {/* Highlights */}
                     <ul className="space-y-4" aria-label="Certificate highlights">

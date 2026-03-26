@@ -6,12 +6,16 @@ interface GlassCardProps {
   hover?: boolean;
 }
 
-export default function GlassCard({ children, className = '', hover = true }: GlassCardProps) {
+export default function GlassCard({
+  children,
+  className = '',
+  hover = true,
+}: GlassCardProps) {
   return (
     <div
-      className={`glass transition-all duration-300 ${
+      className={`glass transition-all duration-200 ${
         hover
-          ? 'hover:border-purple-500/30 hover:shadow-[0_0_24px_rgba(124,58,237,0.15)]'
+          ? 'hover:border-[rgba(196,192,255,0.2)] hover:shadow-[0_0_32px_rgba(135,129,255,0.08)]'
           : ''
       } ${className}`}
     >

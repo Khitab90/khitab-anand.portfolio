@@ -29,13 +29,13 @@ export default function MagneticButton({
   const ref = useMagneticEffect<HTMLDivElement>(prefersReduced ? 0 : 0.35);
 
   const baseClasses =
-    'relative inline-flex items-center gap-3 px-10 py-5 rounded-full font-semibold text-base tracking-wide transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400';
+    'relative inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-base tracking-tight transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4c0ff]';
 
   const primaryClasses =
-    'bg-gradient-to-r from-violet-600 to-purple-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.35)] hover:shadow-[0_0_30px_rgba(124,58,237,0.55)] hover:scale-105';
+    'bg-gradient-to-r from-[#c4c0ff] to-[#8781ff] text-[#100069] hover:shadow-[0_0_30px_rgba(196,192,255,0.3)] hover:scale-105';
 
   const outlineClasses =
-    'border border-violet-500/50 text-violet-300 hover:border-violet-400 hover:text-violet-200 hover:bg-violet-500/10 hover:scale-105';
+    'border border-[rgba(70,69,85,0.6)] text-[#e4e1e9] hover:border-[rgba(196,192,255,0.4)] hover:text-[#c4c0ff] hover:bg-[rgba(196,192,255,0.05)] hover:scale-105';
 
   const classes = `${baseClasses} ${variant === 'primary' ? primaryClasses : outlineClasses} ${className}`;
 

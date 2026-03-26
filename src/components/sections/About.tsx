@@ -9,89 +9,110 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.05 } },
 };
 
+const STATUS_CHIPS = [
+  { label: 'Los Angeles, CA', color: 'text-[#a2e7ff]' },
+  { label: 'Open to Roles', color: 'text-[#a2e7ff]' },
+  { label: 'React', color: 'text-[#c4c0ff]' },
+  { label: 'TypeScript', color: 'text-[#c4c0ff]' },
+  { label: 'AI / ML', color: 'text-[#ffb785]' },
+];
+
 export default function About() {
   return (
-    <SectionWrapper id="about">
-      <div className="max-w-5xl mx-auto w-full">
-        {/* Section header */}
-        <div className="mb-12 text-center">
-          <p className="text-sm font-medium text-violet-400 tracking-[0.2em] uppercase mb-4">About Me</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">
-            Who I <GradientText>Am</GradientText>
-          </h2>
-        </div>
+    <SectionWrapper id="about" className="bg-[#0e0e13]">
+      <div className="max-w-[1100px] mx-auto w-full">
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Bio */}
+        {/* Two-column: photo LEFT, text RIGHT */}
+        <div className="grid md:grid-cols-2 gap-20 items-center mb-20">
+
+          {/* Left: decorative placeholder (profile is in Hero) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative rounded-2xl overflow-hidden aspect-square bg-[#1f1f25] border border-[rgba(70,69,85,0.3)] flex items-center justify-center"
           >
-            <div className="space-y-6 text-gray-400 leading-loose text-base">
-              <p>
-                I'm a <span className="text-gray-200 font-medium">Software Engineer</span> based
-                in Los Angeles, CA, with over two years of professional experience building
-                production-ready React and TypeScript applications at{' '}
-                <span className="text-violet-300 font-medium">Walmart Global Tech</span>.
-              </p>
-              <p>
-                I specialize in creating component-driven UIs, writing high-coverage test suites,
-                and collaborating closely with UX designers and backend teams to ship features
-                end-to-end. I've contributed to GraphQL migrations, multi-market deployments,
-                and accessibility improvements.
-              </p>
-              <p>
-                Outside of work I'm pursuing an <span className="text-gray-200 font-medium">MBA at Westcliff University</span>,
-                exploring AI engineering, and building personal projects to stay sharp on the
-                full stack.
-              </p>
-            </div>
+            <img
+              src="/assets/profile.png"
+              alt="Khitab Anand"
+              className="w-full h-full object-cover object-top"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'linear-gradient(135deg, rgba(196,192,255,0.05) 0%, rgba(162,231,255,0.03) 100%)' }}
+            />
+          </motion.div>
 
-            {/* Education callouts */}
-            <div className="mt-10 space-y-4">
-              {[
-                { degree: 'MBA', school: 'Westcliff University', period: '2024 – Present' },
-                { degree: 'M.S. Computer Science', school: 'California State University, Northridge', period: '2018 – 2021' },
-                { degree: 'B.E. Electrical Engineering', school: 'LD College of Engineering, India', period: '2013 – 2017' },
-              ].map((ed) => (
-                <div
-                  key={ed.degree}
-                  className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 transition-colors"
+          {/* Right: text + chips */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Engineering with <GradientText>Purpose</GradientText>
+            </h2>
+
+            <p className="text-[#918fa1] text-lg leading-relaxed mb-10">
+              Senior Frontend Engineer dedicated to creating immersive digital experiences. My approach blends the logic
+              of robust engineering with the intuition of high-end design. At{' '}
+              <span className="text-[#e4e1e9] font-medium">Walmart Global Tech</span>, I focused on high-performance
+              enterprise systems that serve millions — building scalable React + TypeScript micro-frontends, driving
+              accessibility improvements, and contributing to GraphQL migrations.
+            </p>
+
+            {/* Status chips */}
+            <div className="flex flex-wrap gap-3">
+              {STATUS_CHIPS.map(({ label, color }) => (
+                <span
+                  key={label}
+                  className={`bg-[#35343a] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest ${color} hover:bg-[rgba(196,192,255,0.12)] transition-colors`}
                 >
-                  <div className="w-2 h-2 rounded-full bg-violet-500 mt-1.5 shrink-0" aria-hidden="true" />
-                  <div className="space-y-1">
-                    <p className="text-sm font-semibold text-gray-200">{ed.degree}</p>
-                    <p className="text-xs text-gray-500 leading-relaxed">{ed.school} · {ed.period}</p>
-                  </div>
-                </div>
+                  {label}
+                </span>
               ))}
             </div>
           </motion.div>
-
-          {/* Skills */}
-          <div className="space-y-8">
-            {skills.map((cat, ci) => (
-              <div key={cat.category}>
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">
-                  {cat.category}
-                </h3>
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="flex flex-wrap gap-2.5"
-                >
-                  {cat.skills.map((skill, si) => (
-                    <SkillPill key={skill} label={skill} index={ci * 8 + si} />
-                  ))}
-                </motion.div>
-              </div>
-            ))}
-          </div>
         </div>
+
+        {/* Skills card — full width below */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="mb-8">
+            <p className="text-xs font-bold text-[#464555] uppercase tracking-widest mb-2">Tech Stack</p>
+            <h3 className="font-heading text-2xl font-bold text-[#e4e1e9]">Skills & Technologies</h3>
+          </div>
+
+          <div className="bg-[#1f1f25] rounded-xl p-8 border border-[rgba(70,69,85,0.3)]">
+            <div className="space-y-6">
+              {skills.map((cat, ci) => (
+                <div key={cat.category}>
+                  <h4 className="text-xs font-bold text-[#464555] uppercase tracking-widest mb-3">
+                    {cat.category}
+                  </h4>
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex flex-wrap gap-2"
+                  >
+                    {cat.skills.map((skill, si) => (
+                      <SkillPill key={skill} label={skill} index={ci * 8 + si} />
+                    ))}
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </SectionWrapper>
   );

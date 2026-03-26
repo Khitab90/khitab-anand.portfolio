@@ -6,7 +6,6 @@ const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#experience', label: 'Experience' },
   { href: '#projects', label: 'Projects' },
-  { href: '#certifications', label: 'Certifications' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -50,40 +49,57 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0a0a0f]/80 backdrop-blur-md border-b border-white/5' : ''
+        isScrolled ? 'glass-nav border-b border-[rgba(70,69,85,0.2)]' : ''
       }`}
     >
       <nav
         aria-label="Main navigation"
-        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-center h-20"
+        className="max-w-[1100px] mx-auto px-8 flex items-center justify-between h-20"
       >
-        {/* Desktop links — centered */}
+        {/* KA Logo */}
+        <a
+          href="#"
+          className="font-heading text-2xl font-bold tracking-tighter text-[#c4c0ff] hover:text-[#e3dfff] transition-colors"
+          aria-label="Khitab Anand — back to top"
+        >
+          KA
+        </a>
+
+        {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-10" role="list">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <a
-                href={href}
-                className={`text-sm font-medium tracking-wide transition-colors duration-200 relative group ${
-                  activeSection === href.slice(1)
-                    ? 'text-violet-300'
-                    : 'text-gray-400 hover:text-gray-100'
-                }`}
-              >
-                {label}
-                <span
-                  className={`absolute -bottom-0.5 left-0 h-px bg-gradient-to-r from-violet-500 to-purple-400 transition-all duration-300 ${
-                    activeSection === href.slice(1) ? 'w-full' : 'w-0 group-hover:w-full'
+          {navLinks.map(({ href, label }) => {
+            const isActive = activeSection === href.slice(1);
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  data-active={isActive}
+                  className={`nav-link font-heading font-bold tracking-tight text-sm transition-colors duration-200 ${
+                    isActive ? 'text-[#e4e1e9]' : 'text-[#918fa1] hover:text-[#e4e1e9]'
                   }`}
-                />
-              </a>
-            </li>
-          ))}
+                >
+                  {label}
+                  <svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M0,5 Q50,0 100,5" fill="none" stroke="#c4c0ff" strokeWidth="2" />
+                  </svg>
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
-        {/* Mobile hamburger — right-aligned on mobile */}
-        <div className="md:hidden flex w-full justify-end">
+        {/* Resume button + mobile hamburger */}
+        <div className="flex items-center gap-4">
+          <a
+            href="https://drive.google.com/file/d/1AENobz5uhY6YvcO6Na_HpOLDhoqkKKnV/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center text-[#c4c0ff] font-heading font-bold tracking-tight text-sm border border-[rgba(196,192,255,0.3)] px-4 py-1.5 rounded-lg hover:bg-[rgba(196,192,255,0.08)] transition-all duration-200"
+          >
+            Resume
+          </a>
           <button
-            className="p-2 text-gray-400 hover:text-white transition-colors"
+            className="md:hidden p-2 text-[#918fa1] hover:text-[#e4e1e9] transition-colors"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -106,20 +122,31 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-[#0a0a0f]/95 backdrop-blur-lg border-b border-white/5"
+            className="md:hidden overflow-hidden bg-[#131318]/95 backdrop-blur-lg border-b border-[rgba(70,69,85,0.2)]"
           >
             <ul className="flex flex-col items-center px-6 py-6 gap-5" role="list">
               {navLinks.map(({ href, label }) => (
                 <li key={href}>
                   <a
                     href={href}
-                    className="block text-base font-medium text-gray-300 hover:text-violet-300 transition-colors py-1"
+                    className="block text-base font-heading font-bold text-[#c7c4d8] hover:text-[#c4c0ff] transition-colors py-1"
                     onClick={() => setMenuOpen(false)}
                   >
                     {label}
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://drive.google.com/file/d/1AENobz5uhY6YvcO6Na_HpOLDhoqkKKnV/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#c4c0ff] font-bold text-sm border border-[rgba(196,192,255,0.3)] px-4 py-1.5 rounded-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Resume
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}

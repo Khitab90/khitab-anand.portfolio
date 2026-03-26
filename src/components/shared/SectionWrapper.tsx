@@ -32,18 +32,8 @@ export default function SectionWrapper({ id, children, className = '' }: Section
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
       variants={prefersReduced ? reducedVariants : variants}
-      className={`relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 py-24 ${className}`}
+      className={`relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 py-32 ${className}`}
     >
-      {/* Top gradient divider — gives each section a distinct "new page" feel */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.4) 30%, rgba(168,85,247,0.6) 50%, rgba(139,92,246,0.4) 70%, transparent 100%)',
-        }}
-      />
-
       {children}
     </motion.section>
   );
