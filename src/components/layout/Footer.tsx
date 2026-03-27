@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="py-16 px-8 border-t border-[rgba(70,69,85,0.15)] bg-[#131318]">
       <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="font-body text-sm uppercase tracking-widest text-[#464555]">
-          © 2026 Khitab Anand. Built with Organic Brutalism.
+          © 2026 Khitab Anand. Built with Precision.
         </p>
         <div className="flex items-center gap-6">
           <a

@@ -132,6 +132,12 @@ body {
   background-clip: text;
 }
 
+/* Material Symbols icon font */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-family: 'Material Symbols Outlined';
+}
+
 /* Dot grid — hero background */
 .dot-grid {
   position: absolute;

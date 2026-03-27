@@ -9,7 +9,7 @@ export default function Experience() {
   const topCert = certifications[0];
 
   return (
-    <SectionWrapper id="experience">
+    <SectionWrapper id="work">
       <div className="max-w-[1100px] mx-auto w-full">
 
         {/* Section header */}
@@ -56,14 +56,10 @@ export default function Experience() {
                 </div>
 
                 {/* Description column */}
-                <div className={`mt-6 md:mt-0 ${!isEven ? 'md:order-1' : ''}`}>
-                  <ul className="space-y-3">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="text-[#918fa1] leading-relaxed text-sm">
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                <div className={`mt-6 md:mt-0 ${!isEven ? 'md:order-1 md:text-right' : ''}`}>
+                  <p className="text-[#918fa1] leading-relaxed">
+                    {item.bullets[0]}
+                  </p>
                 </div>
               </motion.div>
             );

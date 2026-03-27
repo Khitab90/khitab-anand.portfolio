@@ -2,120 +2,114 @@ import { motion } from 'framer-motion';
 import SectionWrapper from '../shared/SectionWrapper';
 import GradientText from '../shared/GradientText';
 import { projects } from '../../data/projects';
-import type { ProjectItem } from '../../types';
 import { FaGithub } from 'react-icons/fa';
 import { ExternalLink } from 'lucide-react';
 
-// Tech tag colors — cyan text to denote "code/stack" per design spec
+// Only show the two flagship projects in the editorial layout
+const FEATURED_IDS = ['elibrary', 'shoppinglist'];
+
 const techColors: Record<string, string> = {
   React: 'text-[#a2e7ff]',
-  'Next.js': 'text-[#c7c4d8]',
+  'Next.js': 'text-[#c4c0ff]',
   TypeScript: 'text-[#a2e7ff]',
-  JavaScript: 'text-[#ffb785]',
-  'Node.js': 'text-[#a2e7ff]',
+  'Tailwind CSS': 'text-[#c4c0ff]',
   MongoDB: 'text-[#a2e7ff]',
   Express: 'text-[#c7c4d8]',
-  'Ruby on Rails': 'text-[#ffb4ab]',
-  'C# .NET': 'text-[#c4c0ff]',
-  'Tailwind CSS': 'text-[#a2e7ff]',
+  'Node.js': 'text-[#a2e7ff]',
+  MERN: 'text-[#a2e7ff]',
 };
 
 function getTechClass(tech: string) {
   return techColors[tech] ?? 'text-[#c4c0ff]';
 }
 
-interface ProjectCardProps {
-  project: ProjectItem;
-  index: number;
-}
-
-function ProjectCard({ project, index }: ProjectCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="h-full"
-    >
-      {/* border-beam-wrap adds rotating border glow on hover via CSS */}
-      <div className="border-beam-wrap h-full">
-        <div className="bg-[#1f1f25] rounded-xl border border-[rgba(70,69,85,0.15)] hover:border-[rgba(196,192,255,0.2)] transition-all duration-500 hover:scale-[1.02] p-8 h-full flex flex-col group">
-
-          {/* Header */}
-          <div className="flex items-start justify-between gap-4 mb-4">
-            <div className="space-y-1.5">
-              <span className="text-xs text-[#464555] font-heading uppercase tracking-widest block">
-                {project.date} · {project.role}
-              </span>
-              <h3 className="font-heading font-bold text-[#e4e1e9] text-xl leading-snug">
-                {project.title}
-              </h3>
-            </div>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${project.title} on GitHub`}
-              className="text-[#464555] hover:text-[#a2e7ff] transition-colors shrink-0 mt-1"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaGithub size={20} aria-hidden="true" />
-            </a>
-          </div>
-
-          {/* Divider */}
-          <div className="h-px bg-[rgba(70,69,85,0.3)] mb-5" />
-
-          {/* Description */}
-          <p className="text-sm text-[#918fa1] leading-loose flex-1 mb-6">
-            {project.description}
-          </p>
-
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-[#35343a] rounded ${getTechClass(tech)}`}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Live link */}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View live demo of ${project.title}`}
-              className="mt-5 inline-flex items-center gap-1.5 text-xs text-[#a2e7ff] hover:text-[#e4e1e9] transition-colors"
-            >
-              Live Demo <ExternalLink size={12} aria-hidden="true" />
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+// Gradient thumbnails keyed by project id
+const THUMB_GRADIENTS: Record<string, string> = {
+  elibrary: 'from-[#c4c0ff]/20 via-[#1f1f25] to-[#0e0e13]',
+  shoppinglist: 'from-[#a2e7ff]/20 via-[#1f1f25] to-[#0e0e13]',
+};
 
 export default function Projects() {
+  const featured = projects.filter((p) => FEATURED_IDS.includes(p.id));
+
   return (
     <SectionWrapper id="projects" className="bg-[#0e0e13]">
       <div className="max-w-[1100px] mx-auto w-full">
 
-        {/* Header */}
-        <h2 className="font-heading text-4xl md:text-5xl font-bold mb-16 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="font-heading text-4xl md:text-5xl font-bold mb-24 text-center"
+        >
           Selected <GradientText>Works</GradientText>
-        </h2>
+        </motion.h2>
 
-        {/* 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+        {/* 2-column staggered editorial grid */}
+        <div className="grid md:grid-cols-2 gap-20">
+          {featured.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className={`space-y-6 ${i === 1 ? 'md:mt-32' : ''}`}
+            >
+              {/* Thumbnail */}
+              <div className="aspect-video bg-[#1f1f25] rounded-xl overflow-hidden group border border-[rgba(70,69,85,0.2)] hover:border-[rgba(196,192,255,0.15)] transition-colors duration-300">
+                <div
+                  className={`w-full h-full bg-gradient-to-br ${THUMB_GRADIENTS[project.id] ?? 'from-[#1f1f25] to-[#0e0e13]'} group-hover:scale-105 transition-transform duration-700 flex items-center justify-center`}
+                >
+                  <span className="font-heading font-bold text-2xl text-[rgba(196,192,255,0.15)] tracking-tighter">
+                    {project.title}
+                  </span>
+                </div>
+              </div>
+
+              {/* Info */}
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h3 className="font-heading font-bold text-[#e4e1e9] text-2xl leading-snug">
+                    {project.title}
+                  </h3>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.title} on GitHub`}
+                    className="text-[#464555] hover:text-[#a2e7ff] transition-colors shrink-0 mt-1"
+                  >
+                    <FaGithub size={20} aria-hidden="true" />
+                  </a>
+                </div>
+
+                <p className="text-[#918fa1] leading-relaxed mb-4">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-[#35343a] rounded ${getTechClass(tech)}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-xs text-[#a2e7ff] hover:text-[#e4e1e9] transition-colors"
+                  >
+                    Live Demo <ExternalLink size={12} aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

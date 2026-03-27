@@ -7,6 +7,7 @@ import { useLenis } from './hooks/useLenis';
 // Lazy-load below-the-fold sections
 const About = lazy(() => import('./components/sections/About'));
 const Experience = lazy(() => import('./components/sections/Experience'));
+const Skills = lazy(() => import('./components/sections/Skills'));
 const Projects = lazy(() => import('./components/sections/Projects'));
 const Contact = lazy(() => import('./components/sections/Contact'));
 
@@ -27,6 +28,9 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Experience />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Skills />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Projects />
