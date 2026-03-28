@@ -16,7 +16,7 @@ export default function About() {
       <div className="max-w-[1100px] mx-auto w-full">
 
         {/* Two-column: photo LEFT, text RIGHT */}
-        <div className="grid md:grid-cols-2 gap-20 items-center mb-20">
+        <div className="grid md:grid-cols-2 gap-24 items-center mb-24">
 
           {/* Left: decorative placeholder (profile is in Hero) */}
           <motion.div

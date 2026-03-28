@@ -21,7 +21,7 @@ export default function Experience() {
         </div>
 
         {/* Zigzag timeline */}
-        <div className="relative space-y-20">
+        <div className="relative space-y-24">
           {/* Center vertical line — desktop only */}
           <div
             className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px hidden md:block"
@@ -73,7 +73,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-24 p-8 rounded-xl bg-[#1f1f25] border border-[rgba(196,192,255,0.1)] flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-[rgba(196,192,255,0.3)] transition-all duration-300"
+            className="mt-32 p-8 rounded-xl bg-[#1f1f25] border border-[rgba(196,192,255,0.1)] flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-[rgba(196,192,255,0.3)] transition-all duration-300"
           >
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 rounded-lg bg-[#35343a] flex items-center justify-center text-[#c4c0ff] shrink-0">

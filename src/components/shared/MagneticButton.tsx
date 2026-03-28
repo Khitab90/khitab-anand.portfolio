@@ -29,7 +29,7 @@ export default function MagneticButton({
   const ref = useMagneticEffect<HTMLDivElement>(prefersReduced ? 0 : 0.35);
 
   const baseClasses =
-    'relative inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-base tracking-tight transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4c0ff]';
+    'relative inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-base tracking-tight transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4c0ff]';
 
   const primaryClasses =
     'bg-gradient-to-r from-[#c4c0ff] to-[#8781ff] text-[#100069] hover:shadow-[0_0_30px_rgba(196,192,255,0.3)] hover:scale-105';

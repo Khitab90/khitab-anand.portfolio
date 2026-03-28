@@ -8,6 +8,12 @@ import { ExternalLink } from 'lucide-react';
 // Only show the two flagship projects in the editorial layout
 const FEATURED_IDS = ['elibrary', 'shoppinglist'];
 
+// Scatter initial states — each card flies in from a unique direction
+const SCATTER = [
+  { x: -50, y: 70, rotate: -4 },
+  { x: 50,  y: 90, rotate: 3  },
+];
+
 const techColors: Record<string, string> = {
   React: 'text-[#a2e7ff]',
   'Next.js': 'text-[#c4c0ff]',
@@ -51,14 +57,20 @@ export default function Projects() {
           {featured.map((project, i) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className={`space-y-6 ${i === 1 ? 'md:mt-32' : ''}`}
+              initial={{ opacity: 0, x: SCATTER[i].x, y: SCATTER[i].y, rotate: SCATTER[i].rotate }}
+              whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className={`space-y-8 ${i === 1 ? 'md:mt-40' : ''}`}
             >
               {/* Thumbnail */}
-              <div className="aspect-video bg-[#1f1f25] rounded-xl overflow-hidden group border border-[rgba(70,69,85,0.2)] hover:border-[rgba(196,192,255,0.15)] transition-colors duration-300">
+              <motion.div
+                initial={{ scale: 0.92 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="aspect-video bg-[#1f1f25] rounded-xl overflow-hidden group border border-[rgba(70,69,85,0.2)] hover:border-[rgba(196,192,255,0.15)] transition-colors duration-300"
+              >
                 <div
                   className={`w-full h-full bg-gradient-to-br ${THUMB_GRADIENTS[project.id] ?? 'from-[#1f1f25] to-[#0e0e13]'} group-hover:scale-105 transition-transform duration-700 flex items-center justify-center`}
                 >
@@ -66,7 +78,7 @@ export default function Projects() {
                     {project.title}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Info */}
               <div>

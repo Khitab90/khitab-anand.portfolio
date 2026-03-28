@@ -182,6 +182,7 @@ body {
   object-position: top;
   clip-path: circle(0px at 50% 50%);
   transition: clip-path 0.08s ease-out;
+  filter: url(#liquid-reveal);
   z-index: 10;
 }
 
