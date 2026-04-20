@@ -6,9 +6,13 @@ interface GradientTextProps {
   className?: string;
 }
 
+/** In the new warm design, "accent" text is terracotta italic. */
 export default function GradientText({ children, as: Tag = 'span', className = '' }: GradientTextProps) {
   return (
-    <Tag className={`gradient-text ${className}`}>
+    <Tag
+      className={className}
+      style={{ color: 'var(--accent)', fontStyle: 'italic' }}
+    >
       {children}
     </Tag>
   );

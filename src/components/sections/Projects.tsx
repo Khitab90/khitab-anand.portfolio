@@ -1,130 +1,133 @@
-import { motion } from 'framer-motion';
-import SectionWrapper from '../shared/SectionWrapper';
-import GradientText from '../shared/GradientText';
-import { projects } from '../../data/projects';
-import { FaGithub } from 'react-icons/fa';
-import { ExternalLink } from 'lucide-react';
+import { useRef } from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
-// Only show the two flagship projects in the editorial layout
-const FEATURED_IDS = ['elibrary', 'shoppinglist'];
-
-// Scatter initial states — each card flies in from a unique direction
-const SCATTER = [
-  { x: -50, y: 70, rotate: -4 },
-  { x: 50,  y: 90, rotate: 3  },
-];
-
-const techColors: Record<string, string> = {
-  React: 'text-[#a2e7ff]',
-  'Next.js': 'text-[#c4c0ff]',
-  TypeScript: 'text-[#a2e7ff]',
-  'Tailwind CSS': 'text-[#c4c0ff]',
-  MongoDB: 'text-[#a2e7ff]',
-  Express: 'text-[#c7c4d8]',
-  'Node.js': 'text-[#a2e7ff]',
-  MERN: 'text-[#a2e7ff]',
-};
-
-function getTechClass(tech: string) {
-  return techColors[tech] ?? 'text-[#c4c0ff]';
+interface ProjectEntry {
+  id: string;
+  title: string;
+  year: string;
+  description: string;
+  technologies: string[];
+  thumbGradient: string;
+  githubUrl?: string;
 }
 
-// Gradient thumbnails keyed by project id
-const THUMB_GRADIENTS: Record<string, string> = {
-  elibrary: 'from-[#c4c0ff]/20 via-[#1f1f25] to-[#0e0e13]',
-  shoppinglist: 'from-[#a2e7ff]/20 via-[#1f1f25] to-[#0e0e13]',
-};
+const PROJECTS: ProjectEntry[] = [
+  {
+    id: 'elibrary',
+    title: 'ReadKit',
+    year: '2025',
+    description:
+      'A high-performance reading application built with Next.js and Tailwind CSS. Features dynamic routes, theme toggling, and a clean component architecture.',
+    technologies: ['Next.js', 'Tailwind', 'TypeScript'],
+    thumbGradient: 'linear-gradient(135deg, #D4B896 0%, #C4A07A 50%, #B08860 100%)',
+    githubUrl: 'https://github.com/Khitab90',
+  },
+  {
+    id: 'shoppinglist',
+    title: 'ShoppingList Pro',
+    year: '2024',
+    description:
+      'Full-stack MERN application for modern inventory management. Implements complex data relationships, RESTful APIs, and real-time updates with MongoDB.',
+    technologies: ['MERN', 'MongoDB', 'Express'],
+    thumbGradient: 'linear-gradient(135deg, #C8B8A4 0%, #B8A08A 50%, #A88870 100%)',
+    githubUrl: 'https://github.com/Khitab90/mern_shoppinglist',
+  },
+  {
+    id: 'nodeapi',
+    title: 'NodeJS REST API',
+    year: '2023',
+    description:
+      'Pure Node.js REST API (no Express) implementing full CRUD operations on a JSON data store, following the MVC pattern with routers, models, and controllers.',
+    technologies: ['Node.js', 'REST API', 'MVC'],
+    thumbGradient: 'linear-gradient(135deg, #D0C0AC 0%, #C0A898 50%, #B09080 100%)',
+    githubUrl: 'https://github.com/Khitab90',
+  },
+];
 
 export default function Projects() {
-  const featured = projects.filter((p) => FEATURED_IDS.includes(p.id));
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useScrollReveal(sectionRef);
 
   return (
-    <SectionWrapper id="projects" className="bg-[#0e0e13]">
-      <div className="max-w-[1100px] mx-auto w-full">
+    <div ref={sectionRef} className="section" id="proj-section">
 
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading text-4xl md:text-5xl font-bold mb-24 text-center"
-        >
-          Selected <GradientText>Works</GradientText>
-        </motion.h2>
+      {/* Heading row */}
+      <div className="heading-row">
+        <h2 className="sec-title" data-wipe>Projects</h2>
+        <div className="heading-rule" data-fade style={{ transitionDelay: '.2s' }} />
+      </div>
 
-        {/* 2-column staggered editorial grid */}
-        <div className="grid md:grid-cols-2 gap-20">
-          {featured.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, x: SCATTER[i].x, y: SCATTER[i].y, rotate: SCATTER[i].rotate }}
-              whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className={`space-y-8 ${i === 1 ? 'md:mt-40' : ''}`}
-            >
+      {/* Expandable project list */}
+      <div className="projects-list">
+        {PROJECTS.map((p, i) => (
+          <div
+            key={p.id}
+            className="project-item"
+            data-fade
+            style={{ transitionDelay: `${i * 0.1}s` }}
+          >
+            {/* Row header — always visible */}
+            <div className="project-header">
+              <span className="project-num">{String(i + 1).padStart(2, '0')}</span>
+              <span className="project-name-text">{p.title}</span>
+              <span className="project-year">{p.year}</span>
+              <span className="project-arrow" aria-hidden="true">→</span>
+            </div>
+
+            {/* Expand panel — reveals on hover via CSS */}
+            <div className="project-expand" aria-hidden="true">
               {/* Thumbnail */}
-              <motion.div
-                initial={{ scale: 0.92 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="aspect-video bg-[#1f1f25] rounded-xl overflow-hidden group border border-[rgba(70,69,85,0.2)] hover:border-[rgba(196,192,255,0.15)] transition-colors duration-300"
+              <div
+                className="project-thumb"
+                style={{ background: p.thumbGradient }}
               >
-                <div
-                  className={`w-full h-full bg-gradient-to-br ${THUMB_GRADIENTS[project.id] ?? 'from-[#1f1f25] to-[#0e0e13]'} group-hover:scale-105 transition-transform duration-700 flex items-center justify-center`}
+                <span
+                  style={{
+                    fontFamily: 'var(--f-mono)',
+                    fontSize: '9px',
+                    letterSpacing: '2px',
+                    color: 'rgba(80,55,30,0.45)',
+                    textTransform: 'uppercase',
+                  }}
                 >
-                  <span className="font-heading font-bold text-2xl text-[rgba(196,192,255,0.15)] tracking-tighter">
-                    {project.title}
-                  </span>
-                </div>
-              </motion.div>
+                  Project Image
+                </span>
+              </div>
 
-              {/* Info */}
+              {/* Description + tags */}
               <div>
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="font-heading font-bold text-[#e4e1e9] text-2xl leading-snug">
-                    {project.title}
-                  </h3>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} on GitHub`}
-                    className="text-[#464555] hover:text-[#a2e7ff] transition-colors shrink-0 mt-1"
-                  >
-                    <FaGithub size={20} aria-hidden="true" />
-                  </a>
-                </div>
-
-                <p className="text-[#918fa1] leading-relaxed mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-[#35343a] rounded ${getTechClass(tech)}`}
-                    >
-                      {tech}
-                    </span>
+                <p className="project-detail-desc">{p.description}</p>
+                <div className="project-ptags">
+                  {p.technologies.map((t) => (
+                    <span key={t} className="ptag">{t}</span>
                   ))}
                 </div>
-
-                {project.liveUrl && (
+                {p.githubUrl && (
                   <a
-                    href={project.liveUrl}
+                    href={p.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1.5 text-xs text-[#a2e7ff] hover:text-[#e4e1e9] transition-colors"
+                    style={{
+                      display: 'inline-block',
+                      marginTop: '16px',
+                      fontFamily: 'var(--f-mono)',
+                      fontSize: '9px',
+                      letterSpacing: '1.5px',
+                      textTransform: 'uppercase',
+                      color: 'var(--accent)',
+                      textDecoration: 'none',
+                      borderBottom: '1px solid rgba(196,112,58,0.3)',
+                    }}
                   >
-                    Live Demo <ExternalLink size={12} aria-hidden="true" />
+                    View on GitHub ↗
                   </a>
                 )}
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </SectionWrapper>
+
+    </div>
   );
 }

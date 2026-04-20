@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__stitch__list_projects",
+      "mcp__stitch__list_screens",
+      "Bash(curl:*)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(claude doctor:*)"
+    ]
+  }
+}
