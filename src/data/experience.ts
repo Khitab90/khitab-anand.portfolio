@@ -4,23 +4,23 @@ export const experience: ExperienceItem[] = [
   {
     id: 'walmart-2',
     company: 'Walmart Global Tech',
-    role: 'Software Engineer III',
-    startDate: 'Jun 2023',
-    endDate: 'Oct 2025',
+    role: 'Software Engineer',
+    startDate: '2023',
+    endDate: '2025',
     location: 'Remote',
     bullets: [
-      'Architecting front-end solutions for core retail intelligence. Leveraging React and TypeScript to build scalable micro-frontends. Optimized application performance resulting in a 25% reduction in main-thread blocking time.',
+      'Architecting front-end solutions for core retail intelligence. Built scalable micro-frontends with React & TypeScript. 25% reduction in main-thread blocking time.',
     ],
   },
   {
     id: 'walmart-1',
     company: 'Walmart Global Tech',
-    role: 'Software Engineer Intern',
-    startDate: 'Jun 2022',
-    endDate: 'Jan 2023',
+    role: 'Software Engineer',
+    startDate: '2022',
+    endDate: '2023',
     location: 'Remote',
     bullets: [
-      'Developed internal toolsets for logistics visualization. Streamlined deployment pipelines and contributed to the company-wide design system implementation.',
+      'Enabled country-specific UI across 2 markets (Canada and Mexico) by configuring 20+ CCM feature flags within a shared mono-repo. Increased automated test coverage from 65% to 85%, reducing regression incidents per release.',
     ],
   },
 ];

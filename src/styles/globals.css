@@ -108,6 +108,8 @@ body:has(a:hover) #c-dot,
 body:has(button:hover) #c-dot { width: 6px; height: 6px; }
 body:has(a:hover) #c-ring,
 body:has(button:hover) #c-ring { width: 60px; height: 60px; opacity: .2; }
+#c-dot.on-dark { background: #f2ebe0; }
+#c-ring.on-dark { border-color: #f2ebe0; opacity: .55; }
 
 /* ── PAGE CURTAIN ───────────────────────────────────────────── */
 #curtain {
@@ -176,7 +178,7 @@ nav {
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 .sec-title {
   font-family: var(--f-disp);
@@ -190,7 +192,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 28px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 }
 .heading-row .sec-title { flex-shrink: 0; }
 .heading-rule {
@@ -353,10 +355,9 @@ nav {
 
 /* ── ABOUT ──────────────────────────────────────────────────── */
 #about {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 100px;
-  align-items: center;
+  display: block;
+  max-width: 700px;
+  margin: 0 auto;
 }
 .photo-col { position: relative; }
 .photo-caption {

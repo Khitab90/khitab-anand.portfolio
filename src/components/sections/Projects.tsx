@@ -7,7 +7,6 @@ interface ProjectEntry {
   year: string;
   description: string;
   technologies: string[];
-  thumbGradient: string;
   githubUrl?: string;
 }
 
@@ -17,9 +16,8 @@ const PROJECTS: ProjectEntry[] = [
     title: 'ReadKit',
     year: '2025',
     description:
-      'A high-performance reading application built with Next.js and Tailwind CSS. Features dynamic routes, theme toggling, and a clean component architecture.',
+      'A high-performance reading application built with Next.js and Tailwind CSS. Features liquid-smooth transitions and modular component architecture.',
     technologies: ['Next.js', 'Tailwind', 'TypeScript'],
-    thumbGradient: 'linear-gradient(135deg, #D4B896 0%, #C4A07A 50%, #B08860 100%)',
     githubUrl: 'https://github.com/Khitab90',
   },
   {
@@ -27,9 +25,8 @@ const PROJECTS: ProjectEntry[] = [
     title: 'ShoppingList Pro',
     year: '2024',
     description:
-      'Full-stack MERN application for modern inventory management. Implements complex data relationships, RESTful APIs, and real-time updates with MongoDB.',
+      'Full-stack MERN application for modern inventory management. Implements complex data relationships, RESTful APIs, and real-time updates.',
     technologies: ['MERN', 'MongoDB', 'Express'],
-    thumbGradient: 'linear-gradient(135deg, #C8B8A4 0%, #B8A08A 50%, #A88870 100%)',
     githubUrl: 'https://github.com/Khitab90/mern_shoppinglist',
   },
   {
@@ -39,7 +36,6 @@ const PROJECTS: ProjectEntry[] = [
     description:
       'Pure Node.js REST API (no Express) implementing full CRUD operations on a JSON data store, following the MVC pattern with routers, models, and controllers.',
     technologies: ['Node.js', 'REST API', 'MVC'],
-    thumbGradient: 'linear-gradient(135deg, #D0C0AC 0%, #C0A898 50%, #B09080 100%)',
     githubUrl: 'https://github.com/Khitab90',
   },
 ];
@@ -51,10 +47,12 @@ export default function Projects() {
   return (
     <div ref={sectionRef} className="section" id="proj-section">
 
-      {/* Heading row */}
+      {/* Heading — stacked label + title, no horizontal rule */}
       <div className="heading-row">
-        <h2 className="sec-title" data-wipe>Projects</h2>
-        <div className="heading-rule" data-fade style={{ transitionDelay: '.2s' }} />
+        <div style={{ height: 50 }}>
+          <p className="sec-label" data-fade>Projects</p>
+          <h2 className="sec-title" data-wipe>Projects</h2>
+        </div>
       </div>
 
       {/* Expandable project list */}
@@ -74,27 +72,8 @@ export default function Projects() {
               <span className="project-arrow" aria-hidden="true">→</span>
             </div>
 
-            {/* Expand panel — reveals on hover via CSS */}
+            {/* Expand panel — reveals on hover via CSS, desc + tags only */}
             <div className="project-expand" aria-hidden="true">
-              {/* Thumbnail */}
-              <div
-                className="project-thumb"
-                style={{ background: p.thumbGradient }}
-              >
-                <span
-                  style={{
-                    fontFamily: 'var(--f-mono)',
-                    fontSize: '9px',
-                    letterSpacing: '2px',
-                    color: 'rgba(80,55,30,0.45)',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Project Image
-                </span>
-              </div>
-
-              {/* Description + tags */}
               <div>
                 <p className="project-detail-desc">{p.description}</p>
                 <div className="project-ptags">
@@ -119,7 +98,7 @@ export default function Projects() {
                       borderBottom: '1px solid rgba(196,112,58,0.3)',
                     }}
                   >
-                    View on GitHub ↗
+                    View on GitHub
                   </a>
                 )}
               </div>

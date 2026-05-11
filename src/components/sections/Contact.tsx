@@ -12,10 +12,7 @@ export default function Contact() {
 
       <div className="section" style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '160px 60px' }}>
 
-        <h2
-          className="contact-title"
-          data-fade
-        >
+        <h2 className="contact-title" data-fade>
           Let's build<br />
           <strong>something great.</strong>
         </h2>
@@ -29,18 +26,14 @@ export default function Contact() {
           kjanand09@gmail.com
         </a>
 
-        <div
-          className="contact-socials"
-          data-fade
-          style={{ transitionDelay: '.3s' }}
-        >
+        <div className="contact-socials" data-fade style={{ transitionDelay: '.3s' }}>
           <a
-            href="https://www.linkedin.com/in/khitabanand/"
+            href="https://linkedin.com/in/khitabanand"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
           >
-            LinkedIn ↗
+            LinkedIn
           </a>
           <a
             href="https://github.com/Khitab90"
@@ -48,7 +41,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="social-link"
           >
-            GitHub ↗
+            GitHub
           </a>
           <a
             href="https://drive.google.com/file/d/1AENobz5uhY6YvcO6Na_HpOLDhoqkKKnV/view?usp=sharing"
@@ -56,7 +49,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="social-link"
           >
-            Resume ↗
+            Resume
           </a>
         </div>
 

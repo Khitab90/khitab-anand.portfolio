@@ -17,10 +17,12 @@ export default function Experience() {
     >
       <div className="section" id="exp-section">
 
-        {/* Heading row */}
+        {/* Heading — stacked label + title, no horizontal rule */}
         <div className="heading-row">
-          <h2 className="sec-title" data-wipe>Experience</h2>
-          <div className="heading-rule" data-fade style={{ transitionDelay: '.2s' }} />
+          <div style={{ height: 50 }}>
+            <p className="sec-label" data-fade style={{ fontSize: '1px' }}>Work Experience</p>
+            <h2 className="sec-title" data-wipe>Experience</h2>
+          </div>
         </div>
 
         {/* Experience rows */}

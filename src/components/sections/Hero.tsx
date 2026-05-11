@@ -66,7 +66,7 @@ export default function Hero() {
       aria-label="Hero section"
     >
       {/* Eyebrow */}
-      <p className="hero-eyebrow">Frontend Engineer · Los Angeles</p>
+      <p className="hero-eyebrow">Software Engineer · Los Angeles</p>
 
       {/* Giant name with clip-path reveal */}
       <h1 className="hero-name">

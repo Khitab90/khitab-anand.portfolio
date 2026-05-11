@@ -5,10 +5,11 @@ import Hero from './components/sections/Hero';
 import { useLenis } from './hooks/useLenis';
 
 // Lazy-load below-the-fold sections
-const About      = lazy(() => import('./components/sections/About'));
-const Experience = lazy(() => import('./components/sections/Experience'));
-const Projects   = lazy(() => import('./components/sections/Projects'));
-const Contact    = lazy(() => import('./components/sections/Contact'));
+const About          = lazy(() => import('./components/sections/About'));
+const Experience     = lazy(() => import('./components/sections/Experience'));
+const Certifications = lazy(() => import('./components/sections/Certifications'));
+const Projects       = lazy(() => import('./components/sections/Projects'));
+const Contact        = lazy(() => import('./components/sections/Contact'));
 
 function SectionFallback() {
   return <div className="min-h-screen" aria-hidden="true" />;
@@ -57,6 +58,24 @@ export default function App() {
     };
   }, []);
 
+  // ── Cursor colour switch on dark Contact section ───────────
+  useEffect(() => {
+    const cDot  = document.getElementById('c-dot');
+    const cRing = document.getElementById('c-ring');
+    const dark  = document.getElementById('contact-wrap');
+    if (!cDot || !cRing || !dark) return;
+
+    const onEnter = () => { cDot.classList.add('on-dark'); cRing.classList.add('on-dark'); };
+    const onLeave = () => { cDot.classList.remove('on-dark'); cRing.classList.remove('on-dark'); };
+
+    dark.addEventListener('mouseenter', onEnter);
+    dark.addEventListener('mouseleave', onLeave);
+    return () => {
+      dark.removeEventListener('mouseenter', onEnter);
+      dark.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
+
   return (
     <>
       {/* Page curtain */}
@@ -75,6 +94,9 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Experience />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Certifications />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Projects />
