@@ -20,7 +20,7 @@ export default function Experience() {
         {/* Heading — stacked label + title, no horizontal rule */}
         <div className="heading-row">
           <div style={{ height: 50 }}>
-            <p className="sec-label" data-fade style={{ fontSize: '1px' }}>Work Experience</p>
+            <p className="sec-label" data-fade style={{ color: 'rgb(188,99,42)', fontSize: '16px' }}>Work Experience</p>
             <h2 className="sec-title" data-wipe>Experience</h2>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
@@ -10,11 +10,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen,   setMenuOpen]   = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (v) => setIsScrolled(v > 40));
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Close mobile menu on Escape
   useEffect(() => {
@@ -25,19 +21,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header
-      style={{
-        position: 'fixed', top: 0, left: 0, right: 0,
-        zIndex: 50,
-        transition: 'background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s',
-        ...(isScrolled ? {
-          background: 'rgba(242,235,224,0.85)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: '1px solid var(--border)',
-        } : {}),
-      }}
-    >
+    <header style={{ position: 'relative', zIndex: 200 }}>
       <nav
         aria-label="Main navigation"
         style={{ padding: '28px 60px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}

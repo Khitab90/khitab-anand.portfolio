@@ -85,7 +85,7 @@ export default function Hero() {
           of engineering precision and design intuition.
         </p>
         <div className="hero-cta">
-          <a href="#proj-section" className="btn-magnetic btn-filled">
+          <a href="#exp-section" className="btn-magnetic btn-filled">
             <span className="btn-label">View Work</span>
           </a>
           <a href="#contact-wrap" className="btn-magnetic btn-outline">

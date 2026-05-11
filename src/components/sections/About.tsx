@@ -8,15 +8,8 @@ export default function About() {
   return (
     <div id="about-section" ref={sectionRef}>
       <div className="section">
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          <div style={{ maxWidth: 720 }}>
+        <div id="about">
+          <div className="about-content">
             <p className="sec-label" data-wipe>About</p>
 
             <h2 className="about-title" data-fade style={{ transitionDelay: '.1s' }}>
@@ -30,11 +23,7 @@ export default function About() {
               At Walmart Global Tech, I built high-performance enterprise systems serving millions of users.
             </p>
 
-            <div
-              className="tags"
-              data-fade
-              style={{ transitionDelay: '.3s', justifyContent: 'center' }}
-            >
+            <div className="tags" data-fade style={{ transitionDelay: '.3s' }}>
               <span className="tag accent">Los Angeles, CA</span>
               <span className="tag accent">Open to Roles</span>
               <span className="tag">React</span>

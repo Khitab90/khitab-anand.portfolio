@@ -29,7 +29,7 @@ export default function Certifications() {
         {/* Heading — stacked label + title, matches design pattern */}
         <div className="heading-row">
           <div style={{ height: 50 }}>
-            <p className="sec-label" data-fade>Certification</p>
+            <p className="sec-label" data-fade style={{ color: 'rgb(188,99,42)', fontSize: '16px' }}>Certification</p>
             <h2 className="sec-title" data-wipe>Certifications</h2>
           </div>
         </div>

@@ -90,8 +90,7 @@ body::after {
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width .2s, height .2s, opacity .2s;
-  mix-blend-mode: multiply;
+  transition: width .2s, height .2s, background .3s;
 }
 #c-ring {
   position: fixed;
@@ -102,7 +101,7 @@ body::after {
   z-index: 9998;
   transform: translate(-50%, -50%);
   opacity: .4;
-  transition: width .3s, height .3s, opacity .3s;
+  transition: width .3s, height .3s, opacity .3s, border-color .3s;
 }
 body:has(a:hover) #c-dot,
 body:has(button:hover) #c-dot { width: 6px; height: 6px; }
@@ -357,7 +356,6 @@ nav {
 #about {
   display: block;
   max-width: 700px;
-  margin: 0 auto;
 }
 .photo-col { position: relative; }
 .photo-caption {
@@ -615,14 +613,16 @@ nav {
 .contact-socials { display: flex; gap: 40px; justify-content: center; }
 .social-link {
   font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 2.5px;
+  font-size: 12px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(242, 235, 224, 0.4);
+  color: rgba(242, 235, 224, 0.85);
   text-decoration: none;
-  transition: color .2s;
+  border-bottom: 1px solid rgba(242, 235, 224, 0.2);
+  padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
 }
-.social-link:hover { color: var(--bg); }
+.social-link:hover { color: #fff; border-color: rgba(242, 235, 224, 0.7); }
 
 /* ── FOOTER ─────────────────────────────────────────────────── */
 .footer-copy {

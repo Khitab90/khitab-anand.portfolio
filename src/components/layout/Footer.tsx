@@ -10,7 +10,7 @@ export default function Footer() {
         background: 'var(--bg2)',
       }}
     >
-      <span className="footer-copy">© 2025 Khitab Anand</span>
+      <span className="footer-copy">© 2026 Khitab Anand</span>
       <span className="footer-copy">Designed + Coded by Khitab</span>
     </footer>
   );

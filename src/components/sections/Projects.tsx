@@ -29,15 +29,6 @@ const PROJECTS: ProjectEntry[] = [
     technologies: ['MERN', 'MongoDB', 'Express'],
     githubUrl: 'https://github.com/Khitab90/mern_shoppinglist',
   },
-  {
-    id: 'nodeapi',
-    title: 'NodeJS REST API',
-    year: '2023',
-    description:
-      'Pure Node.js REST API (no Express) implementing full CRUD operations on a JSON data store, following the MVC pattern with routers, models, and controllers.',
-    technologies: ['Node.js', 'REST API', 'MVC'],
-    githubUrl: 'https://github.com/Khitab90',
-  },
 ];
 
 export default function Projects() {
@@ -50,7 +41,7 @@ export default function Projects() {
       {/* Heading — stacked label + title, no horizontal rule */}
       <div className="heading-row">
         <div style={{ height: 50 }}>
-          <p className="sec-label" data-fade>Projects</p>
+          <p className="sec-label" data-fade style={{ color: 'rgb(188,99,42)', fontSize: '16px' }}>Projects</p>
           <h2 className="sec-title" data-wipe>Projects</h2>
         </div>
       </div>
