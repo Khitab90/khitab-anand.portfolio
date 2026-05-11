@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
 
-function scramble(el: HTMLElement, finalText: string, duration = 1200) {
+function scramble(el: HTMLElement, finalText: string, duration = 1600) {
   const len = finalText.length;
   let frame = 0;
   const totalFrames = Math.round(duration / 40);
@@ -29,26 +29,26 @@ function scramble(el: HTMLElement, finalText: string, duration = 1200) {
 
 export default function Hero() {
   const prefersReduced = useReducedMotion();
-  const decoRef = useRef<HTMLDivElement>(null);
 
-  // Text scramble on "Khitab" — fires after curtain lifts
+  // Text scramble on "Khitab" — initialize to random chars immediately,
+  // then resolve to final text when curtain lifts (800ms)
   useEffect(() => {
-    if (prefersReduced) return;
-    const el = document.getElementById('scramble-target');
+    const el = document.getElementById('scramble-target') as HTMLElement | null;
     if (!el) return;
-    const t = setTimeout(() => scramble(el, 'Khitab'), 900);
-    return () => clearTimeout(t);
-  }, [prefersReduced]);
 
-  // Parallax deco "A" on scroll
-  useEffect(() => {
-    const deco = decoRef.current;
-    if (!deco || prefersReduced) return;
-    const onScroll = () => {
-      deco.style.transform = `translateY(${window.scrollY * 0.25}px)`;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    if (prefersReduced) {
+      el.textContent = 'Khitab';
+      return;
+    }
+
+    // Set random chars immediately so "Khitab" is never seen before scramble resolves it
+    el.textContent = Array.from({ length: 6 }, () =>
+      CHARS[Math.floor(Math.random() * CHARS.length)]
+    ).join('');
+
+    // Fire scramble to coincide with curtain lift at 800ms
+    const t = setTimeout(() => scramble(el, 'Khitab', 1600), 800);
+    return () => clearTimeout(t);
   }, [prefersReduced]);
 
   return (
@@ -65,22 +65,6 @@ export default function Hero() {
       }}
       aria-label="Hero section"
     >
-      {/* Parallax decorative "A" */}
-      <div
-        ref={decoRef}
-        className="parallax-deco"
-        aria-hidden="true"
-        style={{
-          right: '-80px',
-          bottom: '-80px',
-          opacity: 0.06,
-          fontSize: '40vw',
-          color: 'var(--accent)',
-        }}
-      >
-        A
-      </div>
-
       {/* Eyebrow */}
       <p className="hero-eyebrow">Frontend Engineer · Los Angeles</p>
 

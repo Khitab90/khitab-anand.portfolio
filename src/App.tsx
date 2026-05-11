@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     const curtain = document.getElementById('curtain');
     if (!curtain) return;
-    const t = setTimeout(() => curtain.classList.add('lifted'), 700);
+    const t = setTimeout(() => curtain.classList.add('lifted'), 800);
     return () => clearTimeout(t);
   }, []);
 
