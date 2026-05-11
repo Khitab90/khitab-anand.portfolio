@@ -241,14 +241,11 @@ nav {
   clip-path: inset(0 0 100% 0);
   animation: clipReveal 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-/* "Khitab" — no clip-path wipe; scramble IS the reveal.
-   Starts invisible, snaps to visible when .scramble-active is added. */
+/* "Khitab" — no clip-path wipe; opacity driven by React state */
 .hero-name .line:nth-child(1) span {
   animation: none;
   clip-path: none;
-  opacity: 0;
 }
-.hero-name .line:nth-child(1) span.scramble-active { opacity: 1; }
 /* "Anand" — keeps clip-path wipe */
 .hero-name .line:nth-child(2) span {
   animation-delay: 2.1s;

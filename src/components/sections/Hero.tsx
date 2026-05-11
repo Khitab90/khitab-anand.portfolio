@@ -1,59 +1,54 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
-
-function scramble(el: HTMLElement, finalText: string, duration = 1600) {
-  const len = finalText.length;
-  let frame = 0;
-  const totalFrames = Math.round(duration / 40);
-  const interval = setInterval(() => {
-    let display = '';
-    for (let i = 0; i < len; i++) {
-      const progress = frame / totalFrames;
-      const revealAt = i / len;
-      if (progress > revealAt + 0.1) {
-        display += finalText[i];
-      } else {
-        display += CHARS[Math.floor(Math.random() * CHARS.length)];
-      }
-    }
-    el.textContent = display;
-    frame++;
-    if (frame > totalFrames) {
-      el.textContent = finalText;
-      clearInterval(interval);
-    }
-  }, 40);
-}
+const FINAL = 'Khitab';
 
 export default function Hero() {
   const prefersReduced = useReducedMotion();
 
-  // Text scramble on "Khitab" — initialize to random chars immediately,
-  // then resolve to final text when curtain lifts (800ms)
-  useEffect(() => {
-    const el = document.getElementById('scramble-target') as HTMLElement | null;
-    if (!el) return;
+  // Drive the scramble entirely through React state so React never
+  // clobbers the text content during reconciliation.
+  const [nameText, setNameText] = useState('');   // '' = invisible (opacity 0)
+  const [visible,  setVisible]  = useState(false);
 
+  useEffect(() => {
     if (prefersReduced) {
-      el.textContent = 'Khitab';
+      setNameText(FINAL);
+      setVisible(true);
       return;
     }
 
-    // Set random chars immediately so "Khitab" is never seen before scramble resolves it
-    el.textContent = Array.from({ length: 6 }, () =>
-      CHARS[Math.floor(Math.random() * CHARS.length)]
-    ).join('');
+    let intervalId: ReturnType<typeof setInterval>;
 
-    // After curtain clears (~2100ms): snap span visible then let scramble
-    // resolve random chars → 'Khitab'. No clip-path wipe on this line —
-    // the scramble itself is the reveal animation.
-    const t = setTimeout(() => {
-      el.classList.add('scramble-active');
-      scramble(el, 'Khitab', 1600);
-    }, 2000);
-    return () => clearTimeout(t);
+    const timeoutId = setTimeout(() => {
+      setVisible(true); // snap name into view showing random chars immediately
+
+      let frame = 0;
+      const totalFrames = Math.round(1600 / 40); // 40 frames @ 40ms
+
+      intervalId = setInterval(() => {
+        let display = '';
+        for (let i = 0; i < FINAL.length; i++) {
+          const progress  = frame / totalFrames;
+          const revealAt  = i / FINAL.length;
+          display += progress > revealAt + 0.1
+            ? FINAL[i]
+            : CHARS[Math.floor(Math.random() * CHARS.length)];
+        }
+        setNameText(display);
+        frame++;
+        if (frame > totalFrames) {
+          setNameText(FINAL);
+          clearInterval(intervalId);
+        }
+      }, 40);
+    }, 2000); // after curtain fully clears (~2100ms)
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
   }, [prefersReduced]);
 
   return (
@@ -73,11 +68,15 @@ export default function Hero() {
       {/* Eyebrow */}
       <p className="hero-eyebrow">Software Engineer · Los Angeles</p>
 
-      {/* Giant name with clip-path reveal */}
+      {/* Giant name */}
       <h1 className="hero-name">
+        {/* Khitab — scramble is the reveal, no clip-path wipe */}
         <span className="line">
-          <span id="scramble-target">Khitab</span>
+          <span style={{ opacity: visible ? 1 : 0 }}>
+            {nameText || FINAL}
+          </span>
         </span>
+        {/* Anand — clip-path wipe */}
         <span className="line">
           <span>Anand</span>
         </span>
