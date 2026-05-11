@@ -46,9 +46,13 @@ export default function Hero() {
       CHARS[Math.floor(Math.random() * CHARS.length)]
     ).join('');
 
-    // Fire scramble after curtain fully clears the bottom of the viewport (~2100ms)
-    // Clip-path also starts at 1.9s, so both reveal simultaneously
-    const t = setTimeout(() => scramble(el, 'Khitab', 1600), 2000);
+    // After curtain clears (~2100ms): snap span visible then let scramble
+    // resolve random chars → 'Khitab'. No clip-path wipe on this line —
+    // the scramble itself is the reveal animation.
+    const t = setTimeout(() => {
+      el.classList.add('scramble-active');
+      scramble(el, 'Khitab', 1600);
+    }, 2000);
     return () => clearTimeout(t);
   }, [prefersReduced]);
 
