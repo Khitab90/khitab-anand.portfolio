@@ -46,8 +46,9 @@ export default function Hero() {
       CHARS[Math.floor(Math.random() * CHARS.length)]
     ).join('');
 
-    // Fire scramble to coincide with curtain lift at 800ms
-    const t = setTimeout(() => scramble(el, 'Khitab', 1600), 800);
+    // Fire scramble after curtain fully clears the bottom of the viewport (~2100ms)
+    // Clip-path also starts at 1.9s, so both reveal simultaneously
+    const t = setTimeout(() => scramble(el, 'Khitab', 1600), 2000);
     return () => clearTimeout(t);
   }, [prefersReduced]);
 

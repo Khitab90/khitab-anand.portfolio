@@ -241,9 +241,9 @@ nav {
   clip-path: inset(0 0 100% 0);
   animation: clipReveal 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.hero-name .line:nth-child(1) span { animation-delay: .7s; }
+.hero-name .line:nth-child(1) span { animation-delay: 1.9s; }
 .hero-name .line:nth-child(2) span {
-  animation-delay: .9s;
+  animation-delay: 2.1s;
   font-style: italic;
   font-weight: 300;
 }
