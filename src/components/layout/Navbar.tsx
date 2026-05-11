@@ -26,7 +26,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav' : ''}`}
+      style={{
+        position: 'fixed', top: 0, left: 0, right: 0,
+        zIndex: 50,
+        transition: 'background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s',
+        ...(isScrolled ? {
+          background: 'rgba(242,235,224,0.85)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: '1px solid var(--border)',
+        } : {}),
+      }}
     >
       <nav
         aria-label="Main navigation"

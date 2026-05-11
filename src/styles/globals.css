@@ -44,6 +44,9 @@ body {
   cursor: none;
 }
 
+/* Prevent UA stylesheet from restoring pointer on interactive elements */
+a, button, [role="button"] { cursor: none; }
+
 /* Noise grain overlay */
 body::after {
   content: '';
